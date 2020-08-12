@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  # 环境 dev|test|prod
+  profiles:
+    active: dev
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+      enabled: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #mapper.xml 地址
+  type-aliases-package: com.wujiusheng.springtheory.bean.entity #实体存放的位置
+
+
+

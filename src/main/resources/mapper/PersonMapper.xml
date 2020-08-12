@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wujiusheng.springtheory.mapper.PersonMapper">
+
+    <resultMap id="resultMap" type="com.wujiusheng.springtheory.bean.entity.Person">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <sql id="field">
+        id, name, age, password
+    </sql>
+    <sql id="addField">
+        name,age,password
+    </sql>
+
+    <!-- 添加一个 -->
+    <insert id="add" parameterType="com.wujiusheng.springtheory.bean.entity.Person"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
+          insert into Person(name, age,password) values (#{name},#{age},#{password})
+    </insert>
+
+    <!--查询所有-->
+    <select id="query" resultMap="resultMap">
+        select
+        <include refid="field"/>
+        from
+        person
+    </select>
+
+    <!--根据名称和密码查询 -->
+    <select id="getByNameAndPassword" resultMap="resultMap">
+        select
+        <include refid="field"/>
+        from
+        person
+        where
+        <if test="name != null">
+            name = #{name}
+        </if>
+        <if test="password != null">
+            AND password = #{password}
+        </if>
+    </select>
+
+</mapper>
