@@ -23,5 +23,8 @@ public interface HelloWorldService {
 
     public ResponseResult<QueryResponse> getByNameAndPassword(String name, String password);
 
-
+    /**
+     *  登录
+     */
+    ResponseResult<String> login(String name, String password);
 }

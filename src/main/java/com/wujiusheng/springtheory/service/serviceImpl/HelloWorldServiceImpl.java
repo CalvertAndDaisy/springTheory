@@ -78,4 +78,20 @@ public class HelloWorldServiceImpl implements HelloWorldService {
 
         return new ResponseResult<>(queryResponse);
     }
+
+    /**
+     *  登录
+     * @param name
+     * @param password
+     * @return
+     */
+    @Override
+    public ResponseResult<String> login(String name, String password) {
+
+        Person person = personMapper.getByNameAndPassword(name, password);
+        if(Objects.isNull(person)){
+            return new ResponseResult<>("error");
+        }
+        return new ResponseResult<>("success");
+    }
 }

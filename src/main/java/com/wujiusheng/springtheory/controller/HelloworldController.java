@@ -32,6 +32,23 @@ public class HelloworldController {
         return "index";
     }
 
+    /** 跳转到login 页面*/
+    @RequestMapping("/login")
+    public String show(){
+        return  "login";
+    }
+
+    /**
+     * 登录
+     */
+
+    @RequestMapping(value="/loginIn", method = RequestMethod.GET)
+    public ResponseResult<String> Login(String name, String password) {
+        ResponseResult<String> responseResult = helloWorldService.login(name,password);
+        return responseResult;
+    }
+
+
     /** 添加 */
     @PostMapping("/add")
     public ResponseResult<Object> add(@RequestBody AddRequest addRequest){
